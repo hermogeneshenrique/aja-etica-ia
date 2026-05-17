@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manual de Ética em IA — Programa Agente Jovem Ambiental do Ceará</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sand:#F5E6C8;          /* areia / sertão claro */
+    --terracotta:#C75B3C;    /* telhado, terra batida */
+    --burnt:#8C2A1B;         /* tijolo queimado */
+    --ocean:#0E6B7A;         /* mar de Mucuripe */
+    --leaf:#3E6B3A;          /* caatinga */
+    --sun:#E8A33D;            /* sol cearense */
+    --ink:#1B1410;            /* tinta escura */
+    --paper:#FBF6EC;          /* papel sépia */
+    --cream:#FFF8EA;
+    --rule:#D9C9A6;
+    --shadow:0 18px 40px -20px rgba(27,20,16,.35), 0 4px 12px -6px rgba(27,20,16,.2);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Outfit', system-ui, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:17px;
+    overflow-x:hidden;
+  }
+  /* textura de fundo sutil */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:radial-gradient(circle at 20% 10%, rgba(232,163,61,.08), transparent 40%),
+                     radial-gradient(circle at 85% 80%, rgba(14,107,122,.07), transparent 45%);
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+  /* ===== CAPA ===== */
+  .cover{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:48px 0 56px;
+    position:relative;
+    background:
+      linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+    overflow:hidden;
+  }
+  .cover::before{
+    content:"";position:absolute;top:-100px;right:-120px;width:500px;height:500px;
+    background:radial-gradient(circle, var(--sun) 0%, transparent 60%);
+    opacity:.45;
+  }
+  .cover::after{
+    content:"";position:absolute;bottom:-180px;left:-100px;width:600px;height:600px;
+    background:radial-gradient(circle, var(--ocean) 0%, transparent 55%);
+    opacity:.18;
+  }
+  .cover-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
+  .crest{display:flex;align-items:center;gap:14px;}
+  .crest-mark{
+    width:54px;height:54px;border-radius:50%;
+    background:var(--burnt);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 3px var(--paper), 0 0 0 2px var(--burnt);
+  }
+  .crest-mark svg{width:28px;height:28px;}
+  .crest-text{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--burnt);font-weight:600;}
+  .crest-text small{display:block;font-size:11px;letter-spacing:.12em;color:var(--ink);opacity:.7;font-weight:400;}
+  .cover-tag{font-family:'JetBrains Mono', monospace;font-size:12px;letter-spacing:.1em;color:var(--ink);opacity:.7;}
+
+  .cover-center{position:relative;z-index:2;margin-top:80px;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--terracotta);font-weight:600;
+    display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  }
+  .eyebrow::before{content:"";width:38px;height:2px;background:var(--terracotta);}
+  h1.cover-title{
+    font-family:'Fraunces', serif;
+    font-weight:800;font-style:italic;
+    font-size:clamp(48px, 8vw, 96px);
+    line-height:.95;letter-spacing:-.025em;
+    color:var(--ink);
+    max-width:14ch;
+  }
+  h1.cover-title em{font-style:normal;color:var(--terracotta);}
+  .cover-sub{
+    margin-top:36px;max-width:62ch;font-size:20px;color:var(--ink);opacity:.85;font-weight:300;
+  }
+  .cover-bottom{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:80px;
+    border-top:1px solid var(--rule);padding-top:28px;
+  }
+  .meta-block h4{font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:600;margin-bottom:8px;}
+  .meta-block p{font-size:15px;color:var(--ink);font-weight:500;}
+
+  /* ===== SUMÁRIO ===== */
+  .toc{padding:96px 0;}
+  .section-marker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--terracotta);margin-bottom:18px;font-weight:600;
+  }
+  h2.section-h{
+    font-family:'Fraunces', serif;font-weight:600;
+    font-size:clamp(36px, 5vw, 56px);line-height:1.05;letter-spacing:-.02em;
+    color:var(--ink);max-width:16ch;margin-bottom:48px;
+  }
+  .toc-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:0;border-top:2px solid var(--ink);}
+  .toc-item{
+    display:flex;align-items:flex-start;gap:18px;
+    padding:24px 18px;border-bottom:1px solid var(--rule);
+    text-decoration:none;color:var(--ink);
+    transition:all .25s ease;
+  }
+  .toc-item:nth-child(odd){border-right:1px solid var(--rule);}
+  .toc-item:hover{background:var(--cream);padding-left:24px;}
+  .toc-num{
+    font-family:'JetBrains Mono', monospace;font-size:14px;
+    color:var(--terracotta);font-weight:600;flex-shrink:0;
+    min-width:36px;
+  }
+  .toc-text strong{display:block;font-family:'Fraunces', serif;font-size:22px;font-weight:600;line-height:1.2;margin-bottom:4px;}
+  .toc-text span{font-size:14px;color:var(--ink);opacity:.65;}
+
+  /* ===== APRESENTAÇÃO ===== */
+  .presentation{padding:80px 0;background:var(--cream);position:relative;}
+  .presentation::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:80px;
+    background:linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  }
+  .pres-grid{display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;position:relative;}
+  .pres-grid > div p{margin-bottom:18px;font-size:17px;}
+  .pull{
+    font-family:'Fraunces', serif;font-style:italic;font-weight:400;
+    font-size:24px;line-height:1.35;color:var(--burnt);
+    border-left:3px solid var(--terracotta);padding:8px 0 8px 22px;
+    margin:32px 0;
+  }
+
+  /* ===== MÓDULO BASE ===== */
+  .module{padding:96px 0;border-top:1px solid var(--rule);position:relative;}
+  .module-header{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:end;margin-bottom:56px;}
+  .mod-num{
+    font-family:'Fraunces', serif;font-style:italic;font-weight:400;
+    font-size:140px;line-height:.85;color:var(--terracotta);
+    letter-spacing:-.04em;
+  }
+  .mod-title-block .section-marker{margin-bottom:10px;}
+  .mod-title-block h2{
+    font-family:'Fraunces', serif;font-weight:600;
+    font-size:clamp(34px, 4.5vw, 50px);line-height:1.05;letter-spacing:-.02em;
+    color:var(--ink);max-width:18ch;
+  }
+  .mod-content{display:grid;grid-template-columns:1fr;gap:28px;max-width:760px;}
+  .mod-content p{font-size:17px;}
+  .mod-content h3{
+    font-family:'Fraunces', serif;font-weight:600;font-size:26px;
+    margin-top:32px;margin-bottom:12px;color:var(--ink);
+    display:flex;align-items:center;gap:14px;
+  }
+  .mod-content h3::before{
+    content:"";width:8px;height:8px;background:var(--sun);border-radius:50%;
+    flex-shrink:0;
+  }
+  .mod-content h4{
+    font-family:'Outfit', sans-serif;font-weight:600;font-size:17px;
+    color:var(--burnt);margin-top:20px;margin-bottom:6px;
+    text-transform:uppercase;letter-spacing:.05em;
+  }
+  .mod-content ul{list-style:none;padding:0;}
+  .mod-content ul li{
+    padding-left:28px;position:relative;margin-bottom:10px;
+  }
+  .mod-content ul li::before{
+    content:"";position:absolute;left:0;top:11px;
+    width:14px;height:2px;background:var(--terracotta);
+  }
+  .mod-content strong{color:var(--burnt);font-weight:600;}
+
+  /* CARDS / DESTAQUES */
+  .callout{
+    background:var(--cream);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ocean);
+    padding:24px 28px;
+    border-radius:4px;
+    margin:24px 0;
+    box-shadow:var(--shadow);
+  }
+  .callout.warm{border-left-color:var(--terracotta);}
+  .callout.green{border-left-color:var(--leaf);}
+  .callout.sun{border-left-color:var(--sun);}
+  .callout-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ocean);font-weight:600;margin-bottom:8px;
+  }
+  .callout.warm .callout-label{color:var(--terracotta);}
+  .callout.green .callout-label{color:var(--leaf);}
+  .callout.sun .callout-label{color:#B07D1E;}
+  .callout p{margin-bottom:0;}
+
+  /* PRINCÍPIOS - GRID */
+  .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px;}
+  .pcard{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:22px;
+    border-radius:6px;
+    transition:all .3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .pcard::before{
+    content:"";position:absolute;top:0;left:0;width:100%;height:4px;
+    background:var(--terracotta);
+  }
+  .pcard:nth-child(2)::before{background:var(--ocean);}
+  .pcard:nth-child(3)::before{background:var(--leaf);}
+  .pcard:nth-child(4)::before{background:var(--sun);}
+  .pcard:nth-child(5)::before{background:var(--burnt);}
+  .pcard:nth-child(6)::before{background:var(--ocean);}
+  .pcard:nth-child(7)::before{background:var(--leaf);}
+  .pcard:nth-child(8)::before{background:var(--terracotta);}
+  .pcard:nth-child(9)::before{background:var(--sun);}
+  .pcard:nth-child(10)::before{background:var(--burnt);}
+  .pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .pcard-num{
+    font-family:'JetBrains Mono', monospace;font-size:12px;
+    color:var(--ink);opacity:.5;margin-bottom:6px;
+  }
+  .pcard h4{
+    font-family:'Fraunces', serif;font-weight:600;font-size:20px;
+    color:var(--ink);margin-bottom:10px;text-transform:none;letter-spacing:0;
+  }
+  .pcard p{font-size:14.5px;line-height:1.5;color:var(--ink);opacity:.85;margin:0;}
+
+  /* CAIXA DE ATIVIDADE */
+  .activity{
+    background:linear-gradient(135deg, #FFF8EA 0%, #F5E6C8 100%);
+    border:2px dashed var(--terracotta);
+    padding:28px 32px;
+    border-radius:8px;
+    margin:32px 0;
+    position:relative;
+  }
+  .activity-tag{
+    position:absolute;top:-13px;left:24px;
+    background:var(--terracotta);color:var(--paper);
+    padding:4px 14px;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;font-weight:600;border-radius:3px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .activity h4{
+    font-family:'Fraunces', serif;font-weight:600;font-size:22px;
+    margin-bottom:12px;color:var(--ink);text-transform:none;letter-spacing:0;
+  }
+  .activity ol{padding-left:22px;}
+  .activity ol li{margin-bottom:8px;font-size:15.5px;}
+
+  /* GLOSSÁRIO */
+  .glossary{padding:96px 0;border-top:1px solid var(--rule);background:var(--cream);}
+  .glossary-list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;border-top:2px solid var(--ink);margin-top:32px;}
+  .gloss-item{padding:18px 0;border-bottom:1px solid var(--rule);}
+  .gloss-item dt{
+    font-family:'Fraunces', serif;font-weight:600;font-size:18px;
+    color:var(--burnt);margin-bottom:4px;
+  }
+  .gloss-item dd{font-size:14.5px;color:var(--ink);opacity:.85;margin:0;line-height:1.5;}
+
+  /* REFERÊNCIAS */
+  .refs{padding:96px 0;border-top:1px solid var(--rule);}
+  .refs ol{padding-left:22px;}
+  .refs ol li{margin-bottom:14px;font-size:15px;line-height:1.55;}
+  .refs ol li em{font-style:italic;}
+
+  /* RODAPÉ */
+  .footer{
+    background:var(--ink);color:var(--sand);
+    padding:64px 0 48px;
+  }
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;}
+  .footer h5{font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sun);margin-bottom:14px;font-weight:600;}
+  .footer p, .footer li{font-size:14px;color:var(--sand);opacity:.85;line-height:1.6;}
+  .footer ul{list-style:none;padding:0;}
+  .footer ul li{margin-bottom:6px;}
+  .footer-brand{font-family:'Fraunces', serif;font-size:28px;font-weight:600;color:var(--paper);margin-bottom:8px;}
+  .footer-bottom{
+    margin-top:48px;padding-top:24px;border-top:1px solid rgba(245,230,200,.15);
+    font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:.1em;
+    color:var(--sand);opacity:.6;
+  }
+
+  /* MAPA VISUAL DO CICLO DE VIDA */
+  .lifecycle{
+    margin:32px 0;padding:32px;border:1px solid var(--rule);border-radius:8px;
+    background:var(--paper);
+  }
+  .lifecycle svg{width:100%;height:auto;display:block;}
+
+  /* TABELA SIMPLES */
+  table.simple{
+    width:100%;border-collapse:collapse;margin:24px 0;
+    font-size:15px;
+  }
+  table.simple th{
+    text-align:left;padding:12px 14px;
+    background:var(--ink);color:var(--paper);
+    font-family:'JetBrains Mono', monospace;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  }
+  table.simple td{padding:14px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  table.simple tr:nth-child(even) td{background:var(--cream);}
+
+  /* RESPONSIVO */
+  @media (max-width:780px){
+    .toc-grid{grid-template-columns:1fr;}
+    .toc-item:nth-child(odd){border-right:none;}
+    .pres-grid{grid-template-columns:1fr;gap:32px;}
+    .module-header{grid-template-columns:1fr;gap:14px;}
+    .mod-num{font-size:90px;}
+    .principles{grid-template-columns:1fr;}
+    .glossary-list{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:28px;}
+    .cover-bottom{grid-template-columns:1fr;gap:14px;}
+  }
+  @media print{
+    body{background:white;}
+    .module, .toc, .glossary, .refs, .presentation{break-inside:avoid;page-break-inside:avoid;}
+    .footer{background:white;color:var(--ink);}
+    .footer p, .footer li{color:var(--ink);}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== CAPA ============== -->
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <div class="crest">
+        <div class="crest-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FBF6EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 7v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V7l-8-5z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="crest-text">
+          AJA Ceará
+          <small>Programa Agente Jovem Ambiental</small>
+        </div>
+      </div>
+      <div class="cover-tag">Manual Formativo · Ed. 2026</div>
+    </div>
+
+    <div class="cover-center">
+      <div class="eyebrow">Itinerário · Especialização em Ética em IA</div>
+      <h1 class="cover-title">Ética em <em>Inteligência Artificial</em> para a juventude do Ceará</h1>
+      <p class="cover-sub">Um caminho formativo construído com a juventude que cuida do meio ambiente, das comunidades e do futuro — para entender, questionar e influenciar as tecnologias que moldam nossas vidas.</p>
+    </div>
+
+    <div class="cover-bottom wrap-inner">
+      <div class="meta-block">
+        <h4>Público</h4>
+        <p>Jovens 15–29 anos vinculados ao AJA</p>
+      </div>
+      <div class="meta-block">
+        <h4>Base normativa</h4>
+        <p>Recomendação UNESCO 2021 sobre Ética da IA</p>
+      </div>
+      <div class="meta-block">
+        <h4>Carga sugerida</h4>
+        <p>20h · leitura, atividades e rodas de conversa</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== SUMÁRIO ============== -->
+<section class="toc">
+  <div class="wrap">
+    <div class="section-marker">Sumário · Roteiro Formativo</div>
+    <h2 class="section-h">Sete módulos para pensar a IA com sotaque cearense.</h2>
+
+    <div class="toc-grid">
+      <a href="#apresentacao" class="toc-item">
+        <span class="toc-num">00</span>
+        <div class="toc-text"><strong>Apresentação</strong><span>Para quem é, como usar, de onde vem</span></div>
+      </a>
+      <a href="#m1" class="toc-item">
+        <span class="toc-num">01</span>
+        <div class="toc-text"><strong>O que é Inteligência Artificial?</strong><span>Tirando o mistério da máquina</span></div>
+      </a>
+      <a href="#m2" class="toc-item">
+        <span class="toc-num">02</span>
+        <div class="toc-text"><strong>Por que ética importa?</strong><span>Quando algoritmo decide a sua vida</span></div>
+      </a>
+      <a href="#m3" class="toc-item">
+        <span class="toc-num">03</span>
+        <div class="toc-text"><strong>Os princípios da IA ética</strong><span>O que a UNESCO recomenda ao mundo</span></div>
+      </a>
+      <a href="#m4" class="toc-item">
+        <span class="toc-num">04</span>
+        <div class="toc-text"><strong>IA, meio ambiente e sertão</strong><span>A tecnologia a serviço da caatinga</span></div>
+      </a>
+      <a href="#m5" class="toc-item">
+        <span class="toc-num">05</span>
+        <div class="toc-text"><strong>Juventude, direitos e algoritmos</strong><span>Seu corpo, sua voz, seus dados</span></div>
+      </a>
+      <a href="#m6" class="toc-item">
+        <span class="toc-num">06</span>
+        <div class="toc-text"><strong>Marcos brasileiros</strong><span>LGPD, PL 2338/2023 e a ENIA</span></div>
+      </a>
+      <a href="#m7" class="toc-item">
+        <span class="toc-num">07</span>
+        <div class="toc-text"><strong>Trilha de ação</strong><span>O que você pode fazer no seu território</span></div>
+      </a>
+      <a href="#glossario" class="toc-item">
+        <span class="toc-num">08</span>
+        <div class="toc-text"><strong>Glossário</strong><span>Palavras de IA explicadas com calma</span></div>
+      </a>
+      <a href="#refs" class="toc-item">
+        <span class="toc-num">09</span>
+        <div class="toc-text"><strong>Referências e leituras</strong><span>Para continuar a caminhada</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== APRESENTAÇÃO ============== -->
+<section id="apresentacao" class="presentation">
+  <div class="wrap">
+    <div class="pres-grid">
+      <div>
+        <div class="section-marker">Apresentação</div>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:42px;line-height:1.05;letter-spacing:-.02em;">A juventude também escreve as regras da tecnologia.</h2>
+      </div>
+      <div>
+        <p>Você já parou pra pensar quem decide o que aparece no seu feed? Quem determina se aquele financiamento que sua família precisava sai ou não? Quem escolhe qual área da sua cidade recebe câmera de monitoramento, e qual fica no escuro?</p>
+        <p>Cada vez mais, essas decisões passam por <strong>sistemas de Inteligência Artificial</strong> — programas de computador que aprendem com dados e produzem resultados que afetam a vida real. Eles estão no celular, no banco, na escola, no posto de saúde, na lavoura e até em decisões judiciais.</p>
+        <p>Este manual nasce de uma convicção do <strong>Programa Agente Jovem Ambiental do Ceará</strong>: a juventude que protege a caatinga, que cuida das nascentes, que organiza mutirão na comunidade, também precisa entender e disputar as tecnologias que estão moldando o futuro do nosso estado, do nosso país e do planeta.</p>
+        <p class="pull">"As tecnologias não são neutras. Elas carregam os valores de quem as faz. Por isso, a juventude precisa estar na sala onde as decisões acontecem."</p>
+        <p>O caminho que propomos aqui se baseia na <strong>Recomendação sobre a Ética da Inteligência Artificial</strong>, aprovada pelos 193 países da UNESCO em novembro de 2021 — o primeiro instrumento global de referência sobre o tema. Mas traduzimos os princípios para a nossa realidade: o sertão, o litoral, a juventude periférica, as comunidades tradicionais, a luta socioambiental.</p>
+
+        <div class="callout sun">
+          <div class="callout-label">Como usar este manual</div>
+          <p>Você pode ler sozinho(a), em dupla ou em grupo. Cada módulo tem um texto principal, caixas de destaque, uma <strong>atividade prática</strong> e perguntas pra discussão. Sugerimos que cada turma do AJA dedique um encontro a cada módulo — mas o ritmo é seu. O importante é que ninguém saia da experiência só com informação: que cada jovem saia com posição, com voz e com vontade de agir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 1 ============== -->
+<section id="m1" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">01</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Um</div>
+        <h2>O que é Inteligência Artificial?</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Antes de falar de ética, precisamos entender do que estamos falando. E aqui vai a primeira boa notícia: <strong>você não precisa ser programador(a) pra entender IA</strong>. Você só precisa de curiosidade e disposição pra fazer perguntas.</p>
+
+      <h3>Uma definição simples (e honesta)</h3>
+      <p>A UNESCO, num documento construído com cientistas do mundo inteiro, evita dar uma definição fechada de IA — porque ela muda muito rápido. Em vez disso, descreve sistemas de IA como <strong>tecnologias que processam dados e informações de uma forma que se parece com comportamento inteligente</strong>: eles raciocinam, aprendem, percebem, preveem, planejam ou controlam alguma coisa.</p>
+
+      <p>Em palavras nossas: imagina um sistema que olha pra muitos exemplos do passado e tenta adivinhar o que vai acontecer no futuro, ou tomar uma decisão parecida com a que um ser humano tomaria. É isso. Não é mágica. Não é consciência. É <strong>cálculo estatístico em escala gigantesca</strong>.</p>
+
+      <div class="callout">
+        <div class="callout-label">Exemplo do dia a dia</div>
+        <p>Quando o aplicativo de mototáxi calcula a tarifa, ele olha hora do dia, distância, tempo, demanda, histórico de corridas — e cospe um número. Quando o feed do Instagram te mostra um vídeo, ele aprendeu, com bilhões de cliques, que pessoas parecidas com você assistem aquele tipo de conteúdo. Isso é IA.</p>
+      </div>
+
+      <h3>Os ingredientes da IA</h3>
+      <p>Todo sistema de IA precisa, basicamente, de três coisas:</p>
+      <ul>
+        <li><strong>Dados</strong> — fotos, textos, números, sons, registros. Quanto mais, melhor (em tese). É a "matéria-prima" da IA.</li>
+        <li><strong>Algoritmos e modelos</strong> — as receitas matemáticas que processam esses dados. Hoje, as receitas mais famosas se chamam <em>aprendizado de máquina</em> e <em>aprendizado profundo</em>.</li>
+        <li><strong>Capacidade computacional</strong> — máquinas potentes, que consomem muita energia, geralmente em grandes centros de dados (que ficam, na maioria, fora do Brasil).</li>
+      </ul>
+
+      <h3>O ciclo de vida de um sistema de IA</h3>
+      <p>A UNESCO chama atenção pra um ponto importante: ética em IA não é só sobre o produto final. É sobre <strong>todas as etapas</strong> da vida de um sistema. Desde a hora que alguém pensa "vamos criar isso", passando pela coleta de dados, pelo treinamento, pelo uso, até a hora em que o sistema é desativado.</p>
+
+      <div class="lifecycle">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- linha de fundo -->
+          <line x1="60" y1="100" x2="740" y2="100" stroke="#D9C9A6" stroke-width="2" stroke-dasharray="4 4"/>
+          <!-- nós -->
+          <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#1B1410" text-anchor="middle">
+            <!-- 1 -->
+            <circle cx="80" cy="100" r="22" fill="#C75B3C"/>
+            <text x="80" y="104" fill="#FBF6EC" font-weight="600">1</text>
+            <text x="80" y="150">Pesquisa</text>
+            <text x="80" y="164">e desenho</text>
+            <!-- 2 -->
+            <circle cx="200" cy="100" r="22" fill="#0E6B7A"/>
+            <text x="200" y="104" fill="#FBF6EC" font-weight="600">2</text>
+            <text x="200" y="150">Coleta</text>
+            <text x="200" y="164">de dados</text>
+            <!-- 3 -->
+            <circle cx="320" cy="100" r="22" fill="#3E6B3A"/>
+            <text x="320" y="104" fill="#FBF6EC" font-weight="600">3</text>
+            <text x="320" y="150">Treinamento</text>
+            <!-- 4 -->
+            <circle cx="440" cy="100" r="22" fill="#E8A33D"/>
+            <text x="440" y="104" fill="#1B1410" font-weight="600">4</text>
+            <text x="440" y="150">Implementação</text>
+            <!-- 5 -->
+            <circle cx="560" cy="100" r="22" fill="#8C2A1B"/>
+            <text x="560" y="104" fill="#FBF6EC" font-weight="600">5</text>
+            <text x="560" y="150">Uso e</text>
+            <text x="560" y="164">monitoramento</text>
+            <!-- 6 -->
+            <circle cx="680" cy="100" r="22" fill="#1B1410"/>
+            <text x="680" y="104" fill="#FBF6EC" font-weight="600">6</text>
+            <text x="680" y="150">Desativação</text>
+          </g>
+          <text x="400" y="40" text-anchor="middle" font-family="'Fraunces', serif" font-size="14" font-style="italic" fill="#1B1410" opacity="0.6">Em cada etapa, há decisões éticas a serem tomadas.</text>
+        </svg>
+      </div>
+
+      <h3>O que IA não é</h3>
+      <p>Vale desmistificar algumas ideias que aparecem no noticiário:</p>
+      <ul>
+        <li><strong>IA não é robô andante.</strong> A maior parte da IA que afeta sua vida é invisível — está em servidores, processando dados.</li>
+        <li><strong>IA não tem consciência.</strong> Ela não "sente", não "quer". Ela executa cálculos baseados nos dados que recebeu.</li>
+        <li><strong>IA não é objetiva nem neutra.</strong> Ela aprende com dados que vêm de uma sociedade desigual — e tende a reproduzir essas desigualdades. Isso é central pra entender ética.</li>
+        <li><strong>IA não vai substituir tudo nem ninguém.</strong> Mas vai mudar muitas profissões e tarefas. Por isso, a UNESCO fala tanto em <em>requalificação</em> e <em>justiça na transição</em>.</li>
+      </ul>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 1</div>
+        <h4>Caça à IA no cotidiano</h4>
+        <ol>
+          <li>Durante 24 horas, anote no celular toda vez que você suspeitar que uma IA está agindo (sugestão de vídeo, recomendação de música, autocompletar, filtro de foto, resposta de aplicativo bancário, alerta climático…).</li>
+          <li>Separe a lista em três colunas: <em>"me ajudou"</em>, <em>"não fez diferença"</em>, <em>"me incomodou ou prejudicou"</em>.</li>
+          <li>Na próxima reunião do AJA, compartilhe sua lista com o grupo. Vocês perceberam padrões? Há tipos de IA que aparecem mais na vida da galera da periferia? E na vida da galera de classe média?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 2 ============== -->
+<section id="m2" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">02</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Dois</div>
+        <h2>Por que ética importa quando o algoritmo decide a sua vida?</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Tem uma história que ajuda a entender. Em 2018, uma empresa enorme dos Estados Unidos descobriu que o sistema de IA que ela usava pra triar currículos rejeitava sistematicamente mulheres. Por quê? Porque o sistema havia aprendido com dez anos de currículos de pessoas contratadas — e a maioria absoluta era de homens. O algoritmo "concluiu" que ser homem era um sinal de bom candidato. A empresa desativou o sistema, mas a lição ficou: <strong>IA aprende com o passado e, sem cuidado, repete e amplifica as injustiças do passado</strong>.</p>
+
+      <p>Casos parecidos acontecem o tempo todo. Sistemas de reconhecimento facial que erram muito mais com pessoas negras. Algoritmos de crédito que negam empréstimo a moradores de bairros periféricos. Sistemas de recomendação que empurram conteúdos de ódio porque "engajam mais". E por aí vai.</p>
+
+      <div class="callout warm">
+        <div class="callout-label">A pergunta-chave</div>
+        <p>Se uma decisão importante da sua vida — entrar na faculdade, conseguir um emprego, receber um benefício, não ser confundido(a) com criminoso na rua — passar por uma IA, <strong>quem é responsável quando dá errado?</strong> A máquina? O programador? A empresa? O governo? Essa pergunta é o coração da ética em IA.</p>
+      </div>
+
+      <h3>O que está em jogo</h3>
+      <p>A Recomendação da UNESCO identifica que sistemas de IA podem afetar profundamente:</p>
+      <ul>
+        <li>A <strong>dignidade humana</strong> e os direitos fundamentais</li>
+        <li>A <strong>igualdade</strong>, em especial de gênero, raça e origem</li>
+        <li>O <strong>meio ambiente</strong> e os ecossistemas (lembre: data centers consomem muita energia e água)</li>
+        <li>A <strong>diversidade cultural</strong> — incluindo línguas indígenas, expressões locais, saberes tradicionais</li>
+        <li>A <strong>democracia</strong> — pense em desinformação eleitoral, em deepfakes, em discurso de ódio amplificado</li>
+        <li>O <strong>trabalho</strong> e a economia, com riscos de automação desigual</li>
+        <li>A <strong>saúde mental</strong>, especialmente de crianças e jovens</li>
+      </ul>
+
+      <h3>Ética não é um freio. É uma bússola.</h3>
+      <p>Existe um discurso que diz: <em>"falar de ética é atrapalhar a inovação"</em>. A UNESCO responde com clareza: lidar com riscos éticos <strong>não impede inovar — orienta a inovação na direção certa</strong>. Da mesma forma que o cinto de segurança não atrapalhou a indústria automobilística, e o licenciamento ambiental não impediu obras: bem feitos, esses instrumentos protegem vidas e fazem com que o desenvolvimento valha a pena para mais gente.</p>
+
+      <p>É importante também não cair no extremo oposto: <strong>nem toda IA é vilã, nem toda IA é solução milagrosa</strong>. A pergunta certa é sempre: <em>essa IA, neste contexto, beneficia quem? prejudica quem? sob quais condições?</em></p>
+
+      <div class="callout green">
+        <div class="callout-label">Pra discutir em grupo</div>
+        <p>Imagine que a Prefeitura da sua cidade quer instalar um sistema de IA pra "prever onde vão acontecer crimes" e direcionar policiamento com base nisso. Que perguntas vocês fariam ao gestor antes de aceitar? Que comunidades correm mais risco de serem vigiadas em excesso? Que dados o sistema usaria? Quem auditaria os resultados?</p>
+      </div>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 2</div>
+        <h4>Tribunal do algoritmo</h4>
+        <ol>
+          <li>Em grupo, escolham uma situação real ou hipotética em que uma IA tomou (ou poderia tomar) uma decisão que afeta jovens: triagem de bolsa de estudos, indicação de conteúdo nas redes, reconhecimento facial em escola, sistema de recomendação musical em plataforma.</li>
+          <li>Dividam-se em três grupos: <strong>defesa</strong> (quem desenvolveu a IA), <strong>acusação</strong> (quem foi prejudicado), e <strong>júri</strong> (a sociedade civil).</li>
+          <li>Façam um julgamento de 30 minutos. Ao final, o júri propõe três <strong>condições mínimas</strong> para que aquele sistema continue funcionando — ou justifica por que ele deve ser desligado.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 3 ============== -->
+<section id="m3" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">03</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Três</div>
+        <h2>Os princípios da IA ética segundo a UNESCO.</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Em novembro de 2021, os 193 países que fazem parte da UNESCO — incluindo o Brasil — aprovaram em conjunto um documento que define <strong>quatro valores</strong> e <strong>dez princípios</strong> para a ética em IA. Não é uma lei (cada país aplica do seu jeito), mas é o acordo internacional mais importante que existe sobre o tema. Aqui, traduzimos para a nossa linguagem.</p>
+
+      <h3>Os 4 valores que sustentam tudo</h3>
+      <p>Antes dos princípios, existem valores fundamentais. São como as raízes do juazeiro: não aparecem na superfície, mas seguram tudo.</p>
+
+      <div class="principles">
+        <div class="pcard">
+          <div class="pcard-num">VALOR 01</div>
+          <h4>Direitos humanos e dignidade</h4>
+          <p>Nenhum sistema de IA pode passar por cima da dignidade de uma pessoa. Independente de cor, gênero, origem, religião, deficiência ou condição social.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">VALOR 02</div>
+          <h4>Prosperidade ambiental e ecossistêmica</h4>
+          <p>A IA precisa cuidar (não destruir) o planeta. Sua pegada de carbono, seu consumo de energia e água, seus impactos ambientais devem ser considerados.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">VALOR 03</div>
+          <h4>Diversidade e inclusão</h4>
+          <p>Toda pessoa, comunidade, cultura, língua e modo de vida precisa caber dentro dos sistemas. Diversidade não é enfeite — é critério de qualidade técnica.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">VALOR 04</div>
+          <h4>Sociedades pacíficas, justas e interconectadas</h4>
+          <p>Tecnologias devem aproximar, não dividir. Devem promover paz e justiça, e nunca ser usadas para vigiar em massa, segregar ou objetificar pessoas.</p>
+        </div>
+      </div>
+
+      <h3>Os 10 princípios na prática</h3>
+      <p>Os princípios são como um guia operacional: são as perguntas que você pode fazer a qualquer projeto, governo ou empresa que use IA.</p>
+
+      <div class="principles">
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 01</div>
+          <h4>Proporcionalidade e não causar dano</h4>
+          <p>Use IA só quando faz sentido. Não use martelo pra matar mosquito. E nunca use IA para vigilância em massa ou para classificar socialmente as pessoas (gradação social).</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 02</div>
+          <h4>Segurança e proteção</h4>
+          <p>Sistemas precisam ser testados, seguros contra ataques, e proteger os dados das pessoas em todas as fases.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 03</div>
+          <h4>Justiça e não discriminação</h4>
+          <p>IA não pode reproduzir nem ampliar preconceitos. Quando isso acontecer, tem que existir um caminho claro de reparação.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 04</div>
+          <h4>Sustentabilidade</h4>
+          <p>Toda IA deve ser avaliada à luz dos Objetivos de Desenvolvimento Sustentável (ODS) — em todas as dimensões: humana, social, cultural, econômica e ambiental.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 05</div>
+          <h4>Privacidade e proteção de dados</h4>
+          <p>Seus dados são seus. Você tem direito a saber como são coletados, usados, com quem são compartilhados, e a pedir para apagá-los.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 06</div>
+          <h4>Supervisão e determinação humana</h4>
+          <p>Sempre tem que ter um ser humano responsável. Decisões de vida e morte nunca podem ser tomadas por máquinas.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 07</div>
+          <h4>Transparência e explicabilidade</h4>
+          <p>Quem foi afetado por uma decisão automatizada tem direito a saber como ela foi tomada — e a contestar.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 08</div>
+          <h4>Responsabilidade e prestação de contas</h4>
+          <p>Sempre tem que ter alguém (pessoa ou empresa) que responde pelos efeitos. A IA em si não tem personalidade jurídica.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 09</div>
+          <h4>Conscientização e alfabetização</h4>
+          <p>Toda a sociedade precisa entender, debater e influenciar a IA. Por isso este manual existe — você está exercendo o princípio 9 agora.</p>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">PRINCÍPIO 10</div>
+          <h4>Governança com múltiplas vozes</h4>
+          <p>Nenhum ator decide sozinho. Governo, empresas, universidades, sociedade civil, povos originários e juventude precisam estar na mesa.</p>
+        </div>
+      </div>
+
+      <div class="callout sun">
+        <div class="callout-label">Bússola prática</div>
+        <p>Quando você se deparar com qualquer projeto de IA — em sala de aula, no trabalho, na prefeitura, num app — passe-o por estas três perguntas: <strong>(1) Esse sistema é proporcional ao problema que quer resolver?</strong> <strong>(2) Existe um humano responsável claro?</strong> <strong>(3) Quem foi afetado pode entender e contestar a decisão?</strong> Se a resposta a alguma dessas três for "não", há um problema ético sério.</p>
+      </div>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 3</div>
+        <h4>Carta dos princípios para o AJA</h4>
+        <ol>
+          <li>Em grupo, releiam os 10 princípios.</li>
+          <li>Escolham os <strong>três princípios</strong> que vocês consideram mais urgentes para a realidade dos jovens do AJA no Ceará — e justifiquem por quê.</li>
+          <li>Escrevam, em uma folha A3, uma <strong>"Carta dos Princípios da Juventude Cearense para a IA"</strong>, com palavras de vocês. Compartilhem nas redes do AJA com a hashtag <em>#JuventudeNaIA</em>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 4 ============== -->
+<section id="m4" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">04</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Quatro</div>
+        <h2>IA, meio ambiente e sertão.</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Aqui o assunto bate forte na nossa realidade. O Ceará é um estado que convive com a semiaridez, com mudanças climáticas que se intensificam, com pressão sobre a caatinga e sobre a zona costeira, e com desigualdades que separam quem tem acesso à água, à energia limpa e à infraestrutura digital de quem não tem.</p>
+
+      <h3>A IA pode ajudar — e está ajudando</h3>
+      <p>A própria UNESCO destaca, na <em>Área Política 5</em>, que sistemas de IA podem apoiar:</p>
+      <ul>
+        <li>A <strong>proteção, monitoramento e gestão de recursos naturais</strong> — incluindo nascentes, áreas de proteção ambiental, manguezais e dunas;</li>
+        <li>A <strong>previsão e mitigação de problemas climáticos</strong> — como secas prolongadas, eventos extremos e desertificação;</li>
+        <li>A <strong>aceleração do acesso a energias sustentáveis</strong>, como solar e eólica (que o Ceará produz em abundância);</li>
+        <li>A <strong>detecção de poluentes</strong> e o monitoramento da qualidade do ar e da água;</li>
+        <li>A <strong>resiliência ao risco de desastres</strong>, com sistemas de alerta precoce.</li>
+      </ul>
+
+      <p>Vários projetos brasileiros já usam IA pra monitorar desmatamento via satélite, identificar focos de queimada em tempo real, prever pesca sustentável e mapear áreas prioritárias para restauração ecológica. Em territórios prioritários do Ministério do Meio Ambiente, técnicas de georreferenciamento combinadas com aprendizado de máquina permitem decisões mais finas sobre onde investir.</p>
+
+      <div class="callout green">
+        <div class="callout-label">Lente AJA</div>
+        <p>Pense no SISAJA, na sua comunidade, no seu PAC. Que dados você já produz hoje? Que decisões poderiam ser tomadas com mais qualidade se houvesse análise inteligente desses dados? E — pergunta crucial — quem deve ter acesso a esses dados, e quem não deve?</p>
+      </div>
+
+      <h3>Mas a IA também tem pegada ambiental</h3>
+      <p>Aqui vem o outro lado, que pouca gente comenta. <strong>Treinar um grande modelo de IA consome muita energia e muita água</strong>. Os data centers que rodam IA estão entre os maiores consumidores de eletricidade do planeta. Em 2023, estudos mostraram que treinar um único grande modelo de linguagem pode emitir mais carbono do que cinco carros durante toda a vida útil deles.</p>
+
+      <p>A UNESCO é categórica neste ponto (parágrafos 84 a 86): os Estados-membros devem <strong>avaliar o impacto ambiental direto e indireto</strong> ao longo do ciclo de vida dos sistemas de IA, incluindo a pegada de carbono, o consumo de energia e o impacto da extração de matérias-primas. E mais: devem dar preferência a métodos de IA <strong>eficientes em dados, energia e recursos</strong>. Em casos em que existem impactos desproporcionalmente negativos ao meio ambiente, <em>"a IA não deve ser usada"</em>.</p>
+
+      <h3>Princípio da precaução: você lembra?</h3>
+      <p>Pra quem trabalha com gestão ambiental, o princípio da precaução é velho conhecido: na dúvida, não causar dano. A UNESCO traz isso pro mundo da IA. Se não há evidências suficientes de que uma aplicação de IA terá o efeito pretendido — ou se ela pode causar danos ambientais sérios — <strong>o ônus da prova é de quem propõe, não de quem se opõe</strong>.</p>
+
+      <div class="callout warm">
+        <div class="callout-label">Provocação</div>
+        <p>Imagine um aplicativo de IA que promete "otimizar" a pesca artesanal, indicando aos pescadores onde estão os cardumes. Pode parecer ótimo. Mas e se essa "otimização" levar à sobrepesca? E se concentrar a pesca em áreas que precisariam descansar? E se a empresa que controla o app cobrar caro pelo serviço, deixando o pescador artesanal pra trás? <strong>Tecnologia boa pra quem? Em que ritmo? Sob qual controle?</strong></p>
+      </div>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 4</div>
+        <h4>Mapa AJA-IA</h4>
+        <ol>
+          <li>Em duplas, identifiquem <strong>um problema socioambiental real</strong> da comunidade onde vocês atuam (acesso à água, descarte de lixo, queimadas, mobilidade, segurança alimentar…).</li>
+          <li>Pesquisem (na internet, com gestores, com lideranças) se existe alguma aplicação de IA já testada para esse problema no Brasil ou no mundo.</li>
+          <li>Façam um <strong>mapa em três colunas</strong>: <em>O que a IA poderia ajudar?</em> · <em>Que cuidados éticos seriam essenciais?</em> · <em>Quem precisa estar na decisão?</em></li>
+          <li>Apresentem para a turma. Construam coletivamente um <strong>"banco de demandas socioambientais cearenses para IA"</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 5 ============== -->
+<section id="m5" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">05</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Cinco</div>
+        <h2>Juventude, direitos e algoritmos.</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>A UNESCO faz uma observação importante (parágrafo 2c) que merece ser lida com calma: sistemas de IA criam <em>"um novo contexto para crianças e jovens crescerem, desenvolverem uma compreensão do mundo e de si mesmos, entenderem criticamente os meios de comunicação e as informações, e aprenderem a tomar decisões"</em>.</p>
+
+      <p>Em palavras nossas: a sua geração é a primeira que cresce com IA o tempo todo. Isso traz oportunidades incríveis — e riscos que ainda estamos aprendendo a entender.</p>
+
+      <h3>O que está acontecendo com a juventude</h3>
+
+      <h4>Saúde mental</h4>
+      <p>A Recomendação alerta especialmente para "graus mais elevados de depressão, ansiedade, isolamento social, desenvolvimento de vícios, tráfico, radicalização e desinformação" relacionados a sistemas de IA — com atenção especial a crianças e jovens (parágrafo 124). Plataformas com algoritmos que <em>maximizam engajamento</em> tendem a empurrar conteúdos que geram emoções fortes — e nem sempre saudáveis.</p>
+
+      <h4>Estereótipos e representação</h4>
+      <p>Quem aparece quando você pesquisa "jovem brasileiro" no Google Imagens? Quem aparece quando pesquisa "criminoso" ou "engenheiro"? Os algoritmos refletem — e amplificam — os estereótipos da sociedade. Se a juventude periférica, negra, indígena, LGBTI+ não estiver presente nos dados, ela some também das soluções.</p>
+
+      <h4>Vigilância e dados</h4>
+      <p>Cada clique seu produz dados. Esses dados são vendidos, processados, usados para te perfilar. Em alguns casos, isso afeta seu acesso a oportunidades — vagas de emprego, financiamentos, até relacionamentos. A UNESCO é firme: <strong>privacidade é um direito essencial pra proteger sua dignidade, autonomia e capacidade de agir no mundo</strong>.</p>
+
+      <h4>Desigualdade de gênero</h4>
+      <p>A <em>Área Política 6</em> é dedicada a gênero. A IA pode reproduzir desigualdades de salário, de representação em STEM, de acesso à tecnologia. Mas também pode ser uma ferramenta de igualdade — se houver investimento, ação afirmativa e protagonismo de meninas e mulheres em todas as etapas.</p>
+
+      <div class="callout">
+        <div class="callout-label">Seus direitos digitais (resumo)</div>
+        <p>Como jovem brasileiro(a), você tem direito a:<br>
+        ✓ <strong>Saber</strong> quando uma decisão sobre você foi tomada por IA;<br>
+        ✓ Receber uma <strong>explicação</strong> compreensível dessa decisão;<br>
+        ✓ <strong>Contestar</strong> a decisão e pedir revisão por um humano;<br>
+        ✓ <strong>Acessar</strong>, corrigir e excluir seus dados pessoais;<br>
+        ✓ <strong>Não sofrer discriminação</strong> automatizada;<br>
+        ✓ <strong>Privacidade</strong>, mesmo nos espaços digitais.</p>
+      </div>
+
+      <h3>O que a UNESCO recomenda especificamente para crianças e jovens</h3>
+      <p>O parágrafo 130 traz uma orientação direta e poderosa: <em>"Estados-membros, bem como todas as partes interessadas, devem criar mecanismos para envolver crianças e jovens de maneira significativa em conversas, debates e na tomada de decisões quanto ao impacto de sistemas de IA em suas vidas e em seu futuro."</em></p>
+
+      <p>Significa: <strong>não dá pra discutir IA sem juventude na mesa</strong>. Por isso, o AJA é também um espaço estratégico pra que a juventude cearense ocupe esses debates — em conselhos, audiências públicas, conferências, e nos espaços de gestão socioambiental.</p>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 5</div>
+        <h4>Auditoria do meu algoritmo</h4>
+        <ol>
+          <li>Escolha uma plataforma que você usa muito (Instagram, TikTok, YouTube, Spotify…).</li>
+          <li>Por uma semana, observe: que tipo de conteúdo aparece com mais frequência? Que vozes aparecem? Que vozes estão ausentes? Há predominância de algum gênero, raça, faixa etária?</li>
+          <li>Registre num caderno e compartilhe com o grupo. Em conjunto, escrevam: <strong>"Carta da juventude cearense às plataformas digitais"</strong>, listando o que vocês querem ver mudado.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 6 ============== -->
+<section id="m6" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">06</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Seis</div>
+        <h2>Os marcos brasileiros que você precisa conhecer.</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Bonito é falar de princípios universais. Mas, na prática, a vida acontece num país com leis e instituições. O Brasil já tem (e está construindo) um conjunto de regras importantes sobre dados, IA e direitos digitais. Conhecer esses marcos é parte da sua cidadania digital.</p>
+
+      <table class="simple">
+        <thead>
+          <tr><th>Marco</th><th>O que é</th><th>Por que importa pra você</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Constituição Federal de 1988</strong></td>
+            <td>Lei maior do país, que garante dignidade, igualdade, privacidade e liberdade de expressão.</td>
+            <td>Toda IA usada no Brasil tem que respeitar a Constituição. Direitos fundamentais não são negociáveis.</td>
+          </tr>
+          <tr>
+            <td><strong>Marco Civil da Internet (Lei 12.965/2014)</strong></td>
+            <td>"Constituição da internet brasileira". Garante neutralidade da rede, privacidade e liberdade.</td>
+            <td>É a base que protege seu acesso e sua expressão online.</td>
+          </tr>
+          <tr>
+            <td><strong>LGPD — Lei Geral de Proteção de Dados (Lei 13.709/2018)</strong></td>
+            <td>Regula como empresas e governos podem coletar, usar e compartilhar seus dados pessoais.</td>
+            <td>Você tem direito ao consentimento, à informação, à exclusão e à portabilidade dos seus dados. A ANPD fiscaliza.</td>
+          </tr>
+          <tr>
+            <td><strong>ENIA — Estratégia Brasileira de IA (2021)</strong> e <strong>Plano Brasileiro de IA (PBIA)</strong></td>
+            <td>Diretrizes federais para pesquisa, formação e aplicações de IA no Brasil.</td>
+            <td>Define onde o país quer chegar com IA, e onde investir recursos públicos.</td>
+          </tr>
+          <tr>
+            <td><strong>PL 2338/2023 — Marco Legal da IA</strong></td>
+            <td>Projeto de lei que cria regras gerais para o uso de IA no Brasil. Aprovado no Senado em 10/dez/2024, em análise na Câmara dos Deputados.</td>
+            <td>Vai estabelecer classificação de risco, direitos de quem é afetado por IA, e o Sistema Nacional de Regulação e Governança de IA (SIA).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>O que o PL 2338/2023 propõe (em linhas gerais)</h3>
+      <p>O projeto, originalmente apresentado pelo então presidente do Senado Rodrigo Pacheco, traz uma <strong>abordagem baseada em risco</strong> — semelhante à do <em>AI Act</em> europeu. Sistemas de IA seriam classificados em diferentes níveis:</p>
+      <ul>
+        <li><strong>Risco excessivo</strong> (proibidos) — por exemplo, sistemas que explorem vulnerabilidades de pessoas para induzir comportamentos prejudiciais, ou que façam classificação social pelo poder público.</li>
+        <li><strong>Alto risco</strong> — sistemas em áreas sensíveis (saúde, educação, justiça, segurança, infraestrutura crítica) que exigem governança rigorosa, avaliação de impacto e supervisão humana.</li>
+        <li><strong>Risco baixo ou mínimo</strong> — aplicações cotidianas (filtros, recomendações simples) com obrigações menores.</li>
+      </ul>
+
+      <p>O texto também garante <strong>direitos para pessoas afetadas por IA</strong>: direito à informação, à explicação das decisões, à contestação, à intervenção humana, à não discriminação. E prevê multas que podem chegar a R$ 50 milhões para empresas que descumpram a lei.</p>
+
+      <div class="callout sun">
+        <div class="callout-label">Atenção, agente jovem</div>
+        <p>O Marco da IA brasileiro está sendo construído <strong>agora</strong>. Audiências públicas, consultas e debates seguem acontecendo. Esse é o momento da juventude socioambiental influenciar o texto — propondo destaques sobre povos tradicionais, sustentabilidade ambiental, juventude periférica. Acompanhe pelo site da Câmara e do Senado, e procure organizações da sociedade civil que estejam acompanhando o tema (como o Lapin, IDEC, InternetLab, Coding Rights, Data Privacy Brasil).</p>
+      </div>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade 6</div>
+        <h4>Cidadão de IA</h4>
+        <ol>
+          <li>Escolha um aplicativo ou serviço digital que você usa diariamente.</li>
+          <li>Procure a <strong>política de privacidade</strong> e os <strong>termos de uso</strong>. Leia (ou pelo menos passe os olhos com calma).</li>
+          <li>Identifique três pontos que pareceriam estranhos se acontecessem fora da internet (ex.: "podemos usar seus dados para fins comerciais por tempo indeterminado").</li>
+          <li>Compartilhe com o grupo. Discutam: <em>se a LGPD e o futuro Marco da IA fossem rigorosamente aplicados, o que mudaria nestes termos?</em></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MÓDULO 7 ============== -->
+<section id="m7" class="module">
+  <div class="wrap">
+    <div class="module-header">
+      <div class="mod-num">07</div>
+      <div class="mod-title-block">
+        <div class="section-marker">Módulo Sete</div>
+        <h2>Trilha de ação: o que você pode fazer no seu território.</h2>
+      </div>
+    </div>
+
+    <div class="mod-content">
+      <p>Conhecer os princípios é só metade do caminho. A outra metade é agir — no seu bairro, na sua escola, no seu coletivo, no AJA, na sua cidade. Aqui propomos seis caminhos concretos.</p>
+
+      <h3>1. Aprender e ensinar</h3>
+      <p>Forme pelo menos cinco pessoas no seu círculo (família, amigos, vizinhança) sobre os princípios básicos da IA. Use linguagem simples. Conte histórias. Mostre exemplos do dia a dia. <em>Alfabetização em IA</em> é um princípio da UNESCO — e começa em casa.</p>
+
+      <h3>2. Documentar casos no seu território</h3>
+      <p>Sempre que algum sistema digital tomar uma decisão que afete alguém da comunidade (negativa de cadastro, algoritmo que invisibiliza voz, vigilância exagerada, conteúdo discriminatório), <strong>registre</strong>. Print, foto, depoimento. Esses registros viram munição para denúncias e debates públicos.</p>
+
+      <h3>3. Ocupar espaços de decisão</h3>
+      <p>Conselhos de juventude, conselhos de meio ambiente, conselhos de educação, audiências públicas, conferências estaduais e nacionais. A UNESCO recomenda explicitamente (parágrafo 130) que jovens estejam envolvidos significativamente nas decisões sobre IA. Apareça. Inscreva-se. Faça pergunta. Apresente proposta.</p>
+
+      <h3>4. Usar IA com consciência</h3>
+      <p>Não estamos dizendo "não use IA". Estamos dizendo: <strong>use com consciência</strong>. Quando usar uma ferramenta de IA generativa para um trabalho, declare. Quando ela errar, corrija. Quando ela reproduzir estereótipos, denuncie. Quando consumir muito conteúdo de IA, pondere com leitura, conversa e experiência real.</p>
+
+      <h3>5. Conectar IA à pauta socioambiental</h3>
+      <p>Sua gestão de PAC, seu projeto de educação ambiental, sua articulação no AJA — tudo isso pode dialogar com IA. Pode ter uma página dedicada nos seus relatórios. Pode virar tema de roda de conversa. Pode entrar nas suas pautas ao gestor público. Você já tem um lugar pra falar de IA: o lugar de quem cuida do território.</p>
+
+      <h3>6. Cobrar transparência e responsabilidade</h3>
+      <p>Sempre que ouvir falar que uma instituição (escola, prefeitura, empresa) está adotando "IA" para algo, faça as três perguntas-bússola:</p>
+      <ul>
+        <li>Esse sistema é <strong>proporcional</strong> ao problema que quer resolver?</li>
+        <li>Existe um <strong>humano responsável</strong>?</li>
+        <li>Quem foi afetado pode <strong>entender e contestar</strong>?</li>
+      </ul>
+
+      <div class="callout warm">
+        <div class="callout-label">Compromisso AJA-IA</div>
+        <p>Encerramos este manual com um convite. Que cada núcleo do AJA elabore o seu próprio <strong>"Compromisso AJA-IA"</strong> — um documento curto, com 5 a 10 pontos, sobre como aquele grupo se relaciona com tecnologias de IA: o que aceita, o que questiona, o que cobra. Reúnam, no final do ano, todos os compromissos num grande documento estadual. <em>Essa é a forma mais bonita de fazer o princípio 9 acontecer.</em></p>
+      </div>
+
+      <div class="activity">
+        <div class="activity-tag">Atividade Final</div>
+        <h4>Diga ao mundo</h4>
+        <ol>
+          <li>Em grupo, escolham <strong>uma das atividades anteriores</strong> que mais marcou a turma.</li>
+          <li>Transformem o resultado em um produto compartilhável: vídeo curto, podcast, cartilha em PDF, exposição fotográfica, peça teatral, post para redes sociais ou apresentação para a comunidade.</li>
+          <li>Divulguem nos canais do AJA, da SEMA e nos seus territórios. Marquem <strong>@unesco</strong> e usem as hashtags <em>#JuventudeNaIA #AJA #EticaIA #Ceara</em>.</li>
+          <li>Mais importante: <strong>continuem o debate</strong>. Esse manual é só o começo.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GLOSSÁRIO ============== -->
+<section id="glossario" class="glossary">
+  <div class="wrap">
+    <div class="section-marker">Glossário</div>
+    <h2 class="section-h">Palavras de IA explicadas com calma.</h2>
+
+    <dl class="glossary-list">
+      <div class="gloss-item"><dt>Algoritmo</dt><dd>Sequência de passos lógicos que um computador segue para resolver um problema ou tomar uma decisão. Como uma receita de bolo, mas em código.</dd></div>
+      <div class="gloss-item"><dt>Aprendizado de máquina</dt><dd>Ramo da IA em que o sistema aprende a partir de exemplos, sem que cada regra seja escrita à mão por um programador.</dd></div>
+      <div class="gloss-item"><dt>Aprendizado profundo</dt><dd>Tipo avançado de aprendizado de máquina, que usa estruturas chamadas redes neurais. É a tecnologia por trás de muitos modelos atuais.</dd></div>
+      <div class="gloss-item"><dt>ANPD</dt><dd>Autoridade Nacional de Proteção de Dados. Órgão federal brasileiro que fiscaliza a aplicação da LGPD.</dd></div>
+      <div class="gloss-item"><dt>Avaliação de impacto ético (AIE)</dt><dd>Procedimento que identifica os possíveis benefícios, preocupações e riscos de um sistema de IA, antes ou durante seu uso.</dd></div>
+      <div class="gloss-item"><dt>Caixa de areia regulatória (sandbox)</dt><dd>Ambiente controlado onde tecnologias podem ser testadas com regras especiais, antes de serem liberadas pra valer.</dd></div>
+      <div class="gloss-item"><dt>Conjunto de dados (dataset)</dt><dd>Coleção organizada de dados (textos, imagens, números) usada para treinar ou testar sistemas de IA.</dd></div>
+      <div class="gloss-item"><dt>Deepfake</dt><dd>Áudio, imagem ou vídeo gerado por IA que imita pessoas reais — frequentemente usado para desinformação.</dd></div>
+      <div class="gloss-item"><dt>Discriminação algorítmica</dt><dd>Quando um sistema produz resultados injustos contra um grupo (por raça, gênero, classe, etc.), reproduzindo desigualdades do mundo real.</dd></div>
+      <div class="gloss-item"><dt>Explicabilidade</dt><dd>Capacidade de entender e descrever como um sistema de IA chegou a um determinado resultado.</dd></div>
+      <div class="gloss-item"><dt>Governança</dt><dd>Conjunto de regras, instituições, processos e atores que decidem como uma tecnologia é desenvolvida e usada.</dd></div>
+      <div class="gloss-item"><dt>IA generativa</dt><dd>Sistemas de IA que criam conteúdo novo (texto, imagem, áudio, vídeo) a partir de comandos. Ex.: chatbots e geradores de imagem.</dd></div>
+      <div class="gloss-item"><dt>LGPD</dt><dd>Lei Geral de Proteção de Dados Pessoais (Lei 13.709/2018). Regula o uso de dados pessoais no Brasil.</dd></div>
+      <div class="gloss-item"><dt>LMICs / LDCs / LLDCs / SIDS</dt><dd>Termos da ONU: países de renda baixa e média / países menos desenvolvidos / em desenvolvimento sem litoral / pequenos Estados insulares.</dd></div>
+      <div class="gloss-item"><dt>ODS</dt><dd>Objetivos de Desenvolvimento Sustentável das Nações Unidas — 17 metas globais para 2030.</dd></div>
+      <div class="gloss-item"><dt>Pegada de carbono</dt><dd>Quantidade de gases de efeito estufa emitidos direta ou indiretamente por uma atividade — incluindo treinar modelos de IA.</dd></div>
+      <div class="gloss-item"><dt>Privacidade por projeto (privacy by design)</dt><dd>Abordagem que incorpora a proteção da privacidade desde o início do desenvolvimento de um sistema, não como remendo posterior.</dd></div>
+      <div class="gloss-item"><dt>Reconhecimento facial</dt><dd>Tecnologia que identifica ou verifica pessoas a partir de imagens do rosto — com riscos sérios de erro e discriminação.</dd></div>
+      <div class="gloss-item"><dt>Supervisão humana</dt><dd>Garantia de que decisões importantes tomadas com apoio de IA possam ser revisadas, contestadas e, se necessário, corrigidas por seres humanos.</dd></div>
+      <div class="gloss-item"><dt>Viés (ou tendência)</dt><dd>Distorção sistemática nos dados ou no modelo que faz o sistema favorecer ou prejudicar certos grupos.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============== REFERÊNCIAS ============== -->
+<section id="refs" class="refs">
+  <div class="wrap">
+    <div class="section-marker">Referências e leituras</div>
+    <h2 class="section-h">Para continuar a caminhada.</h2>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;margin-bottom:14px;">Documentos oficiais</h3>
+    <ol>
+      <li>UNESCO. <em>Recomendação sobre a Ética da Inteligência Artificial</em>. Paris: UNESCO, 2022 (aprovada em 23 de novembro de 2021). Disponível em: unesdoc.unesco.org</li>
+      <li>BRASIL. <em>Lei nº 13.709, de 14 de agosto de 2018 — Lei Geral de Proteção de Dados Pessoais (LGPD)</em>. Brasília: Presidência da República, 2018.</li>
+      <li>BRASIL. <em>Lei nº 12.965, de 23 de abril de 2014 — Marco Civil da Internet</em>. Brasília: Presidência da República, 2014.</li>
+      <li>BRASIL. Ministério da Ciência, Tecnologia e Inovação. <em>Estratégia Brasileira de Inteligência Artificial (EBIA)</em>. Brasília, 2021.</li>
+      <li>BRASIL. Senado Federal. <em>Projeto de Lei nº 2.338, de 2023</em> — Marco Legal da Inteligência Artificial. Brasília, 2023 (aprovado pelo Senado em 10/dez/2024; em tramitação na Câmara dos Deputados).</li>
+      <li>NAÇÕES UNIDAS. <em>Transformando Nosso Mundo: A Agenda 2030 para o Desenvolvimento Sustentável</em>. Resolução A/RES/70/1, 2015.</li>
+      <li>UNESCO. <em>Indicadores de Universalidade da Internet — Princípios ROAM</em>, 2018.</li>
+    </ol>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;margin-top:32px;margin-bottom:14px;">Para aprofundar</h3>
+    <ol>
+      <li>O'NEIL, Cathy. <em>Algoritmos de Destruição em Massa</em>. Rio de Janeiro: Rua do Sabão, 2020.</li>
+      <li>SILVA, Tarcízio. <em>Racismo Algorítmico: inteligência artificial e discriminação nas redes digitais</em>. São Paulo: Edições Sesc, 2022.</li>
+      <li>BENJAMIN, Ruha. <em>Race After Technology: Abolitionist Tools for the New Jim Code</em>. Polity, 2019.</li>
+      <li>BUOLAMWINI, Joy. <em>Unmasking AI: My Mission to Protect What Is Human in a World of Machines</em>. Random House, 2023.</li>
+      <li>D'IGNAZIO, Catherine; KLEIN, Lauren. <em>Data Feminism</em>. MIT Press, 2020.</li>
+    </ol>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:600;margin-top:32px;margin-bottom:14px;">Organizações brasileiras para acompanhar</h3>
+    <ol>
+      <li>LAPIN — Laboratório de Políticas Públicas e Internet (lapin.org.br)</li>
+      <li>InternetLab (internetlab.org.br)</li>
+      <li>Coding Rights (codingrights.org)</li>
+      <li>IDEC — Instituto Brasileiro de Defesa do Consumidor (idec.org.br)</li>
+      <li>Data Privacy Brasil (dataprivacybr.org)</li>
+      <li>AqualtuneLab — Pesquisa em direito digital com perspectiva racial (aqualtunelab.com.br)</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============== RODAPÉ ============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AJA Ceará</div>
+        <p>Programa Agente Jovem Ambiental — uma política pública estadual de protagonismo juvenil em educação ambiental e gestão socioambiental territorial.</p>
+        <p style="margin-top:14px;"><em>Este manual integra o itinerário formativo de Especialização em Ética em Inteligência Artificial.</em></p>
+      </div>
+      <div>
+        <h5>Coordenação</h5>
+        <ul>
+          <li>SEMA — Secretaria do Meio Ambiente do Ceará</li>
+          <li>Coordenação do Programa AJA</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Base normativa</h5>
+        <ul>
+          <li>UNESCO 2021</li>
+          <li>LGPD (Lei 13.709/2018)</li>
+          <li>Marco Civil (Lei 12.965/2014)</li>
+          <li>PL 2338/2023</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      MANUAL FORMATIVO · EDIÇÃO 2026 · LICENÇA CC BY-NC-SA · FORTALEZA — CEARÁ
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
